@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista de Reservas</title>
+    <!-- Link para o Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Lista de Reservas</h1>
+
+        <!-- Tabela de Reservas -->
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Laboratório</th>
+                    <th>Data</th>
+                    <th>Horário Início</th>
+                    <th>Horário Fim</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.id }}</td>
+                    <td>{{ reserva.nome_usuario }}</td>
+                    <td>{{ reserva.laboratorio }}</td>
+                    <td>{{ reserva.data }}</td>
+                    <td>{{ reserva.horario_inicio }}</td>
+                    <td>{{ reserva.horario_fim }}</td>
+                    <td>
+                        <!-- Botão Editar: aparece para administradores e para o próprio usuário -->
+                        {% if session.get('admin') or session['username'] == reserva.nome_usuario %}
+                        <a href="{{ url_for('editar_reserva', id=reserva.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        {% endif %}
+
+                        <!-- Botão Excluir: apenas para administradores -->
+                        {% if session.get('admin') %}
+                        <form action="{{ url_for('excluir_reserva', id=reserva.id) }}" method="post" onsubmit="return confirm('Tem certeza de que deseja excluir esta reserva?');" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                        {% endif %}
+
+                        <!-- Botão Cancelar: para o próprio usuário ou administrador -->
+                        {% if session.get('admin') or session['username'] == reserva.nome_usuario %}
+                        <form action="{{ url_for('cancelar_reserva', id=reserva.id) }}" method="post" onsubmit="return confirm('Tem certeza de que deseja cancelar esta reserva?');" style="display:inline;">
+                            <button type="submit" class="btn btn-secondary btn-sm">Cancelar</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botão de Voltar -->
+        <div class="text-center">
+            <a href="/" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka1GzlxcuFh5rIh9IemDlxo1CnozIH4MNQg0o0JtyP7w5lF7kxCm2cbIgWppz2bg" crossorigin="anonymous"></script>
+</body>
+</html>

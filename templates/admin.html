@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+</head>
+<body>
+    <h1>Painel de Administração</h1>
+    <p>Total de Reservas: {{ total_reservas }}</p>
+    <p>Total de Usuários: {{ total_usuarios }}</p>
+
+    <br><br>
+
+    <a href="{{ url_for('index') }}">Voltar para a página inicial</a>
+    <a href="{{ url_for('logout') }}">Sair</a>
+</body>
+</html>

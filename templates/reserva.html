@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nova Reserva</title>
+    <!-- Link para o Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="w-100 w-md-25 bg-light p-2 rounded shadow-sm">
+            <h1 class="text-center mb-3 fs-4">Fazer Reserva</h1>
+            <form method="POST">
+                <div class="mb-2">
+                    <label for="laboratorio" class="form-label fs-6">Laboratório</label>
+                    <input type="text" id="laboratorio" name="laboratorio" class="form-control form-control-sm" required>
+                </div>
+                <div class="mb-2">
+                    <label for="data" class="form-label fs-6">Data</label>
+                    <input type="date" id="data" name="data" class="form-control form-control-sm" required>
+                </div>
+                <div class="mb-2">
+                    <label for="horario_inicio" class="form-label fs-6">Horário Início</label>
+                    <input type="time" id="horario_inicio" name="horario_inicio" class="form-control form-control-sm" required>
+                </div>
+                <div class="mb-2">
+                    <label for="horario_fim" class="form-label fs-6">Horário Fim</label>
+                    <input type="time" id="horario_fim" name="horario_fim" class="form-control form-control-sm" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Reservar</button>
+            </form>
+            <div class="text-center mt-3">
+                <a href="/" class="btn btn-secondary btn-sm">Voltar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka1GzlxcuFh5rIh9IemDlxo1CnozIH4MNQg0o0JtyP7w5lF7kxCm2cbIgWppz2bg" crossorigin="anonymous"></script>
+</body>
+</html>
